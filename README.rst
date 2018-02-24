@@ -1,12 +1,10 @@
 # SUDS
 
-.. image:: https://img.shields.io/circleci/project/github/ByReaL/suds/master.svg?style=flat-square
-    :target: https://circleci.com/gh/ByReaL/suds
 
 .. image:: https://img.shields.io/travis/ByReaL/suds/master.svg?style=flat-square
     :target: https://travis-ci.org/ByReaL/suds
 
-.. image:: https://img.shields.io/suds/ByReaL/suds/master.svg?style=flat-square
+.. image:: https://img.shields.io/coveralls/ByReaL/suds/master.svg?style=flat-square
     :target: https://coveralls.io/r/ByReaL/suds
 
 .. image:: https://img.shields.io/pypi/v/suds.svg?style=flat-square
