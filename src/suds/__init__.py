@@ -27,7 +27,7 @@ import sys
 #
 
 __version__ = '0.4.0.1'
-__build__="GA R699-20100913"
+__build__="GA R700-20180224"
 
 #
 # Exceptions
