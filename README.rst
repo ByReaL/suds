@@ -1,5 +1,5 @@
-# SUDS
-
+SUDS
+=============================
 
 .. image:: https://img.shields.io/travis/ByReaL/suds/master.svg?style=flat-square
     :target: https://travis-ci.org/ByReaL/suds
