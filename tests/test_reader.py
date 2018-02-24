@@ -18,7 +18,7 @@ class TestReader(unittest.TestCase):
         self.r = None
 
     def test_mangle(self):
-        self.assertEqual(self.r.mangle('asdasd', '123'), '2033017806-123')
+        self.assertEqual(self.r.mangle('asdasd', '123'), '70368119-123')
 
 
 if __name__ == '__main__':

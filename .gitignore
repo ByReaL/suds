@@ -1,2 +1,7 @@
 
 .idea
+.tox
+*.pyc
+.pytest_cache
+src/suds.egg-info
+.coverage
