@@ -21,9 +21,13 @@ from __future__ import absolute_import, print_function, division
 
 import io
 import os
+import sys
 from glob import glob
 
 import setuptools
+
+sys.path.append('src')
+import suds
 
 here = os.path.abspath(os.path.dirname(__file__))
 
