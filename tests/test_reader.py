@@ -4,14 +4,14 @@ from __future__ import absolute_import, print_function, division
 
 import unittest
 
-
+from suds.reader import Reader
+from suds.options import Options
 
 
 class TestReader(unittest.TestCase):
+
     def setUp(self):
         import os
-        from suds.reader import Reader
-        from suds.options import Options
         os.environ['PYTHONHASHSEED'] = '100'
         options = Options()
         self.r = Reader(options)
