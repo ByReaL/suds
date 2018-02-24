@@ -9,8 +9,10 @@ import unittest
 
 class TestReader(unittest.TestCase):
     def setUp(self):
+        import os
         from suds.reader import Reader
         from suds.options import Options
+        os.environ['PYTHONHASHSEED'] = '100'
         options = Options()
         self.r = Reader(options)
 
@@ -18,7 +20,7 @@ class TestReader(unittest.TestCase):
         self.r = None
 
     def test_mangle(self):
-        self.assertEqual(self.r.mangle('asdasd', '123'), '70368119-123')
+        self.assertEqual(self.r.mangle('asdasd', '123'), '1972376540089790566-123')
 
 
 if __name__ == '__main__':
