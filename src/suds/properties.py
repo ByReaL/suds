@@ -181,7 +181,7 @@ class Definition:
         if len(self.classes) and \
             not isinstance(value, self.classes):
                 msg = '"%s" must be: %s' % (self.name, self.classes)
-                raise AttributeError,msg
+                raise AttributeError(msg)
                     
             
     def __repr__(self):
