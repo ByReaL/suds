@@ -536,7 +536,7 @@ class Method:
         if not self.faults():
             try:
                 return client.invoke(args, kwargs)
-            except WebFault(e):
+            except WebFault as e:
                 return (500, e)
         else:
             return client.invoke(args, kwargs)
@@ -641,7 +641,7 @@ class SoapClient:
                 result = reply.message
             else:
                 result = self.succeeded(binding, reply.message)
-        except TransportError, e:
+        except TransportError as e:
             if e.httpcode in (202,204):
                 result = None
             else:
