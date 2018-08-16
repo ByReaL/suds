@@ -17,12 +17,23 @@
 """
 Provides sx typing classes.
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from logging import getLogger
 from suds import *
 from suds.mx import *
 from suds.sax import Namespace as NS
 from suds.sax.text import Text
+
+try:
+    long = long
+except NameError:
+    long = int
+	
+try:
+    unicode = unicode
+except NameError:
+    unicode = str
 
 log = getLogger(__name__)
 

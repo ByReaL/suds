@@ -17,6 +17,7 @@
 """
 Provides typed unmarshaller classes.
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from logging import getLogger
 from suds import *
@@ -24,6 +25,11 @@ from suds.umx import *
 from suds.umx.core import Core
 from suds.resolver import NodeResolver, Frame
 from suds.sudsobject import Factory
+
+try:
+    unicode = unicode
+except NameError:
+    unicode = str
 
 log = getLogger(__name__)
 
@@ -107,9 +113,9 @@ class Typed(Core):
         """
         Append an attribute name/value into L{Content.data}.
         @param name: The attribute name
-        @type name: basestring
+        @type name: (str, unicode)
         @param value: The attribute's value
-        @type value: basestring
+        @type value: (str, unicode)
         @param content: The current content being unmarshalled.
         @type content: L{Content}
         """

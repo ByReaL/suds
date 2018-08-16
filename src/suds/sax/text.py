@@ -17,10 +17,15 @@
 """
 Contains XML text classes.
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from suds import *
 from suds.sax import *
 
+try:
+    unicode = unicode
+except NameError:
+    unicode = str
 
 class Text(unicode):
     """

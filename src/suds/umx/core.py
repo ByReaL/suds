@@ -17,6 +17,7 @@
 """
 Provides base classes for XML->object I{unmarshalling}.
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from logging import getLogger
 from suds import *
@@ -25,6 +26,10 @@ from suds.umx.attrlist import AttrList
 from suds.sax.text import Text
 from suds.sudsobject import Factory, merge
 
+try:
+    unicode = unicode
+except NameError:
+    unicode = str
 
 log = getLogger(__name__)
 
@@ -97,7 +102,7 @@ class Core:
                 return None
             else:
                 return Text('', lang=lang)
-        if isinstance(content.text, basestring):
+        if isinstance(content.text, (str, unicode)):
             return Text(content.text, lang=lang)
         else:
             return content.text
@@ -119,9 +124,9 @@ class Core:
         """
         Append an attribute name/value into L{Content.data}.
         @param name: The attribute name
-        @type name: basestring
+        @type name: (str, unicode)
         @param value: The attribute's value
-        @type value: basestring
+        @type value: (str, unicode)
         @param content: The current content being unmarshalled.
         @type content: L{Content}
         """

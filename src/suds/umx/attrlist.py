@@ -17,6 +17,7 @@
 """
 Provides filtered attribute list classes.
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from suds import *
 from suds.umx import *
@@ -45,7 +46,8 @@ class AttrList:
         @rtype: I{generator}
         """
         for a in self.raw:
-            if self.skip(a): continue
+            if self.skip(a):
+                continue
             yield a
             
     def rlen(self):

@@ -19,6 +19,7 @@ The I{wsdl} module provides an objectification of the WSDL.
 The primary class is I{Definitions} as it represends the root element
 found in the document.
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from logging import getLogger
 from suds import *
@@ -30,9 +31,12 @@ from suds.xsd import qualify, Namespace
 from suds.xsd.schema import Schema, SchemaCollection
 from suds.xsd.query import ElementQuery
 from suds.sudsobject import Object, Facade, Metadata
-from suds.reader import DocumentReader, DefinitionsReader
-from urlparse import urljoin
-import re, soaparray
+from suds.reader import DocumentReader
+try:
+    from urllib.parse import urljoin
+except ImportError:
+    from urlparse import urljoin
+import re
 
 log = getLogger(__name__)
 
@@ -175,7 +179,8 @@ class Definitions(WObject):
         """ Add child objects using the factory """
         for c in root.getChildren(ns=wsdlns):
             child = Factory.create(c, self)
-            if child is None: continue
+            if child is None:
+                continue
             self.children.append(child)
             if isinstance(child, Import):
                 self.imports.append(child)
@@ -521,7 +526,7 @@ class PortType(NamedObject):
         """
         try:
             return self.operations[name]
-        except Exception as e:
+        except Exception:
             raise MethodNotFound(name)
                 
     def __gt__(self, other):
@@ -890,14 +895,13 @@ class Factory:
     @type tags: dict
     """
 
-    tags =\
-    {
-        'import' : Import, 
-        'types' : Types, 
-        'message' : Message, 
-        'portType' : PortType,
-        'binding' : Binding,
-        'service' : Service,
+    tags = {
+        'import': Import,
+        'types': Types,
+        'message': Message,
+        'portType': PortType,
+        'binding': Binding,
+        'service': Service,
     }
     
     @classmethod

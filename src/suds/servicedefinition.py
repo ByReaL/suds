@@ -17,6 +17,7 @@
 """
 The I{service definition} provides a textual representation of a service.
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from logging import getLogger
 from suds import *
@@ -98,7 +99,8 @@ class ServiceDefinition:
         @rtype: (port, [method])
         """
         for p in self.ports:
-            if p[0] == p: return p
+            if p[0] == p:
+                return p
         p = (port, [])
         self.ports.append(p)
         return p
@@ -111,15 +113,20 @@ class ServiceDefinition:
         for l in (self.params, self.types):
             for t,r in l:
                 ns = r.namespace()
-                if ns[1] is None: continue
-                if ns[1] in namespaces: continue
+                if ns[1] is None:
+                    continue
+                if ns[1] in namespaces:
+                    continue
                 if Namespace.xs(ns) or Namespace.xsd(ns):
                     continue
                 namespaces.append(ns[1])
-                if t == r: continue
+                if t == r:
+                    continue
                 ns = t.namespace()
-                if ns[1] is None: continue
-                if ns[1] in namespaces: continue
+                if ns[1] is None:
+                    continue
+                if ns[1] in namespaces:
+                    continue
                 namespaces.append(ns[1])
         i = 0
         namespaces.sort()
@@ -133,15 +140,18 @@ class ServiceDefinition:
         for m in [p[1] for p in self.ports]:
             for p in [p[1] for p in m]:
                 for pd in p:
-                    if pd[1] in self.params: continue
+                    if pd[1] in self.params:
+                        continue
                     item = (pd[1], pd[1].resolve())
                     self.params.append(item)
                     
     def publictypes(self):
         """ get all public types """
         for t in self.wsdl.schema.types.values():
-            if t in self.params: continue
-            if t in self.types: continue
+            if t in self.params:
+                continue
+            if t in self.types:
+                continue
             item = (t, t)
             self.types.append(item)
         tc = lambda x,y: cmp(x[0].name, y[0].name)
@@ -170,11 +180,13 @@ class ServiceDefinition:
         @rtype: (prefix, uri).
         """
         for ns in Namespace.all:
-            if u == ns[1]: return ns[0]
+            if u == ns[1]:
+                return ns[0]
         for ns in self.prefixes:
-            if u == ns[1]: return ns[0]
-        raise Exception('ns (%s) not mapped'  % u)
-    
+            if u == ns[1]:
+                return ns[0]
+        raise Exception('ns (%s) not mapped' % u)
+
     def xlate(self, type):
         """
         Get a (namespace) translated I{qualified} name for specified type.

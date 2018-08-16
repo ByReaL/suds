@@ -28,8 +28,14 @@ containing the prefix and the URI.  Eg: I{('tns', 'http://myns')}
     encode/decode strings.
 @type encoder: L{Encoder}
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from suds.sax.enc import Encoder
+
+try:
+    unicode = unicode
+except NameError:
+    unicode = str
 
 #
 # pluggable XML special character encoder.
@@ -42,7 +48,7 @@ def splitPrefix(name):
     Split the name into a tuple (I{prefix}, I{name}).  The first element in
     the tuple is I{None} when the name does't have a prefix.
     @param name: A node name containing an optional prefix.
-    @type name: basestring
+    @type name: (str, unicode)
     @return: A tuple containing the (2) parts of I{name}
     @rtype: (I{prefix}, I{name}) 
     """

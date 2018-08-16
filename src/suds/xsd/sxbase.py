@@ -18,6 +18,7 @@
 The I{sxbase} module provides I{base} classes that represent
 schema objects.
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from logging import getLogger
 from suds import *
@@ -491,7 +492,8 @@ class SchemaObject(object):
     
     def __len__(self):
         n = 0
-        for x in self: n += 1
+        for x in self:
+            n += 1
         return n
     
     def __iter__(self):
@@ -575,7 +577,10 @@ class Iter:
             return self.stack[-1]
         else:
             raise StopIteration()
-    
+
+    def __next__(self):
+        return self.next()
+
     def next(self):
         """
         Get the next item.

@@ -17,12 +17,18 @@
 """
 Suds basic options classes.
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from suds.properties import *
 from suds.wsse import Security
 from suds.xsd.doctor import Doctor
 from suds.transport import Transport
 from suds.cache import Cache, NoCache
+
+try:
+    unicode = unicode
+except NameError:
+    unicode = str
 
 
 class TpLinker(AutoLinker):
@@ -106,9 +112,9 @@ class Options(Skin):
             Definition('cache', Cache, NoCache()),
             Definition('faults', bool, True),
             Definition('transport', Transport, None, TpLinker()),
-            Definition('service', (int, basestring), None),
-            Definition('port', (int, basestring), None),
-            Definition('location', basestring, None),
+            Definition('service', (int, (str, unicode)), None),
+            Definition('port', (int, (str, unicode)), None),
+            Definition('location', (str, unicode), None),
             Definition('soapheaders', (), ()),
             Definition('wsse', Security, None),
             Definition('doctor', Doctor, None),

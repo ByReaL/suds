@@ -18,6 +18,7 @@
 The I{xdate} module provides classes for converstion
 between XML dates and python objects.
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from logging import getLogger
 from suds import *
@@ -25,6 +26,11 @@ from suds.xsd import *
 import time
 import datetime as dt
 import re
+
+try:
+    unicode = unicode
+except NameError:
+    unicode = str
 
 log = getLogger(__name__)
 
@@ -49,7 +55,7 @@ class Date:
         if isinstance(date, dt.date):
             self.date = date
             return
-        if isinstance(date, basestring):
+        if isinstance(date, (str, unicode)):
             self.date = self.__parse(date)
             return
         raise ValueError(type(date))

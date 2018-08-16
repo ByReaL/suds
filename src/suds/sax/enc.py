@@ -17,8 +17,15 @@
 """
 Provides XML I{special character} encoder classes.
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 import re
+
+try:
+    unicode = unicode
+except NameError:
+    unicode = str
+
 
 class Encoder:
     """
@@ -46,7 +53,7 @@ class Encoder:
         @return: True if needs encoding.
         @rtype: boolean
         """
-        if isinstance(s, basestring):
+        if isinstance(s, (str, unicode)):
             for c in self.special:
                 if c in s:
                     return True
@@ -60,7 +67,7 @@ class Encoder:
         @return: The encoded string.
         @rtype: str
         """
-        if isinstance(s, basestring) and self.needsEncoding(s):
+        if isinstance(s, (str, unicode)) and self.needsEncoding(s):
             for x in self.encodings:
                 s = re.sub(x[0], x[1], s)
         return s
@@ -73,7 +80,7 @@ class Encoder:
         @return: The decoded string.
         @rtype: str
         """
-        if isinstance(s, basestring) and '&' in s:
+        if isinstance(s, (str, unicode)) and '&' in s:
             for x in self.decodings:
                 s = s.replace(x[0], x[1])
         return s

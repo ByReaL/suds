@@ -25,6 +25,7 @@ XML namespaces in suds are represented using a (2) element tuple
 containing the prefix and the URI.  Eg: I{('tns', 'http://myns')}
 
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from logging import getLogger
 import suds.metrics
@@ -36,7 +37,11 @@ from suds.sax.text import Text
 from suds.sax.attribute import Attribute
 from xml.sax import make_parser, InputSource, ContentHandler
 from xml.sax.handler import feature_external_ges
-from cStringIO import StringIO
+
+try:
+    unicode = unicode
+except NameError:
+    unicode = str
 
 log = getLogger(__name__)
 

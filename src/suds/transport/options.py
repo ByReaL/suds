@@ -17,10 +17,15 @@
 """
 Contains classes for transport options.
 """
-
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from suds.transport import *
 from suds.properties import *
+
+try:
+    unicode = unicode
+except NameError:
+    unicode = str
 
    
 class Options(Skin):
@@ -51,7 +56,7 @@ class Options(Skin):
             Definition('proxy', dict, {}),
             Definition('timeout', (int,float), 90),
             Definition('headers', dict, {}),
-            Definition('username', basestring, None),
-            Definition('password', basestring, None),
+            Definition('username', (str, unicode), None),
+            Definition('password', (str, unicode), None),
         ]
         Skin.__init__(self, domain, definitions, kwargs)

@@ -17,6 +17,7 @@
 """
 The I{wsse} module provides WS-Security.
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from logging import getLogger
 from suds import *
@@ -32,18 +33,19 @@ except ImportError:
     from md5 import md5
 
 
-dsns = \
-    ('ds',
-     'http://www.w3.org/2000/09/xmldsig#')
-wssens = \
-    ('wsse', 
-     'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd')
-wsuns = \
-    ('wsu',
-     'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd')
-wsencns = \
-    ('wsenc',
-     'http://www.w3.org/2001/04/xmlenc#')
+dsns = ('ds', 'http://www.w3.org/2000/09/xmldsig#')
+wssens = (
+    'wsse',
+    'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd'
+    )
+wsuns = (
+    'wsu',
+    'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'
+    )
+wsencns = (
+    'wsenc',
+    'http://www.w3.org/2001/04/xmlenc#'
+    )
 
 
 class Security(Object):

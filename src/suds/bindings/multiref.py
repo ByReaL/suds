@@ -17,6 +17,7 @@
 """
 Provides classes for handling soap multirefs.
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from logging import getLogger
 from suds import *
@@ -103,7 +104,8 @@ class MultiRef:
             if self.soaproot(child):
                 self.nodes.append(child)
             id = child.get('id')
-            if id is None: continue
+            if id is None:
+                continue
             key = '#%s' % id
             self.catalog[key] = child
 

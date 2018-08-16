@@ -19,10 +19,16 @@ The I{sudsobject} module provides a collection of suds objects
 that are primarily used for the highly dynamic interactions with
 wsdl/xsd defined types.
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from logging import getLogger
 from suds import *
 from new import classobj
+
+try:
+    unicode = unicode
+except NameError:
+    unicode = str
 
 log = getLogger(__name__)
 
@@ -76,12 +82,14 @@ def footprint(sobject):
     n = 0
     for a in sobject.__keylist__:
         v = getattr(sobject, a)
-        if v is None: continue
+        if v is None:
+            continue
         if isinstance(v, Object):
             n += footprint(v)
             continue
         if hasattr(v, '__len__'):
-            if len(v): n += 1
+            if len(v):
+                n += 1
             continue
         n +=1
     return n
@@ -277,7 +285,7 @@ class Printer:
                 return '<empty>'
             else:
                 return self.print_collection(object, h, n+2)
-        if isinstance(object, basestring):
+        if isinstance(object, (str, unicode)):
             return '"%s"' % tostr(object)
         return '%s' % tostr(object)
     

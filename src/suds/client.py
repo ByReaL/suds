@@ -18,6 +18,7 @@
 The I{2nd generation} service proxy provides access to web services.
 See I{README.txt}
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 import suds
 import suds.metrics as metrics

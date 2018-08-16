@@ -18,9 +18,14 @@
 Provides modules containing classes to support
 unmarshalling (XML).
 """
+from __future__ import absolute_import, print_function, division, unicode_literals
 
 from suds.sudsobject import Object
 
+try:
+    unicode = unicode
+except NameError:
+    unicode = str
 
 
 class Content(Object):
@@ -30,7 +35,7 @@ class Content(Object):
     @ivar data: The (optional) content data.
     @type data: L{Object}
     @ivar text: The (optional) content (xml) text.
-    @type text: basestring
+    @type text: (str, unicode)
     """
     
     extensions = []
