@@ -239,7 +239,7 @@ class Factory:
         else:
             try:
                 result = self.builder.build(type)
-            except Exception, e:
+            except Exception as e:
                 log.error("create '%s' failed", name, exc_info=True)
                 raise BuildError(name, e)
         timer.stop()
