@@ -536,7 +536,7 @@ class Method:
         if not self.faults():
             try:
                 return client.invoke(args, kwargs)
-            except WebFault, e:
+            except WebFault(e):
                 return (500, e)
         else:
             return client.invoke(args, kwargs)
