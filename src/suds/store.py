@@ -21,7 +21,7 @@ these documents.
 """
 from __future__ import absolute_import, print_function, division, unicode_literals
 
-from StringIO import StringIO
+from io import StringIO
 from logging import getLogger
 
 log = getLogger(__name__)
