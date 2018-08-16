@@ -20,12 +20,15 @@ See I{README.txt}
 """
 from __future__ import absolute_import, print_function, division, unicode_literals
 
-import suds
-import suds.metrics as metrics
+
 try:
     from http.cookiejar import CookieJar
 except ImportError:
     from cookielib import CookieJar
+from copy import deepcopy
+
+import suds
+import suds.metrics as metrics
 from suds import *
 from suds.reader import DefinitionsReader
 from suds.transport import TransportError, Request
@@ -42,8 +45,6 @@ from suds.sax.document import Document
 from suds.sax.parser import Parser
 from suds.options import Options
 from suds.properties import Unskin
-from urlparse import urlparse
-from copy import deepcopy
 from suds.plugin import PluginContainer
 from logging import getLogger
 
