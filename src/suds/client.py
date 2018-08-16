@@ -21,7 +21,10 @@ See I{README.txt}
 
 import suds
 import suds.metrics as metrics
-from cookielib import CookieJar
+try:
+    from http.cookiejar import CookieJar
+except ImportError:
+    from cookielib import CookieJar
 from suds import *
 from suds.reader import DefinitionsReader
 from suds.transport import TransportError, Request
