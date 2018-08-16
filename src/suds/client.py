@@ -328,7 +328,7 @@ class ServiceSelector:
         """
         service = None
         if not len(self.__services):
-            raise Exception, 'No services defined'
+            raise Exception('No services defined')
         if isinstance(name, int):
             try:
                 service = self.__services[name]
@@ -429,7 +429,7 @@ class PortSelector:
         """
         port = None
         if not len(self.__ports):
-            raise Exception, 'No ports defined: %s' % self.__qn
+            raise Exception('No ports defined: %s' % self.__qn)
         if isinstance(name, int):
             qn = '%s[%d]' % (self.__qn, name)
             try:
