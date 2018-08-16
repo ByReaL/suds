@@ -22,8 +22,7 @@ wsdl/xsd defined types.
 from __future__ import absolute_import, print_function, division, unicode_literals
 
 from logging import getLogger
-from suds import *
-from new import classobj
+from suds import tostr
 
 try:
     unicode = unicode
@@ -107,7 +106,7 @@ class Factory:
         key = '.'.join((name, str(bases)))
         subclass = cls.cache.get(key)
         if subclass is None:
-            subclass = classobj(name, bases, dict)
+            subclass = type(name, bases, dict)
             cls.cache[key] = subclass
         return subclass
     
@@ -259,7 +258,8 @@ class Printer:
     """
     
     @classmethod
-    def indent(cls, n): return '%*s'%(n*3,' ')
+    def indent(cls, n):
+        return '%*s' % (n * 3, ' ')
 
     def tostr(self, object, indent=-2):
         """ get s string representation of object """
@@ -333,7 +333,8 @@ class Printer:
     
     def print_dictionary(self, d, h, n, nl=False):
         """ print complex using the specified indent (n) and newline (nl). """
-        if d in h: return '{}...'
+        if d in h:
+            return '{}...'
         h.append(d)
         s = []
         if nl:
@@ -357,8 +358,9 @@ class Printer:
         return ''.join(s)
 
     def print_collection(self, c, h, n):
-        """ print collection using the specified indent (n) and newline (nl). """
-        if c in h: return '[]...'
+        """print collection using the specified indent (n) and newline (nl)."""
+        if c in h:
+            return '[]...'
         h.append(c)
         s = []
         for item in c:
